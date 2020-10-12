@@ -4,7 +4,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev:client": "",
+    "dev:client": "yarn start --prefix client",
     "dev:server": "",
     "dev": "concurrently \"yarn dev:server\" \"yarn dev:client\""
   },
@@ -12,5 +12,6 @@
   "devDependencies": {
     "concurrently": "^5.3.0",
     "nodemon": "^2.0.4"
-  }
+  },
+  "dependencies": {}
 }
