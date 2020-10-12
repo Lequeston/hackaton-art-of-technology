@@ -5,6 +5,8 @@ const path = require('path');
 
 //плагины
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   //рабочая дериктория
@@ -15,7 +17,7 @@ module.exports = {
   },
   //билд проекта
   output: {
-    filename: '[name].js', //билд js-ников
+    filename: '[name].[hash].js', //билд js-ников
     path: path.resolve(__dirname, 'dist') //папка в которую будет собираться
   },
   //настройки удобства в разработке 
@@ -31,11 +33,29 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: './index.html', //TODO: доработать, когда появится isDev
+    }),
+    new CleanWebpackPlugin(), //очистка директрии
+    new MiniCSSExtractPlugin({
+      filename: '[name].[hash].css'
     })
   ],
   module: {
     rules: [
+      {
+        test: /\.s[ac]ss$/, //какие файлы
+        use: [
+          {
+            loader: MiniCSSExtractPlugin.loader,
+            options: {
+              hmr: true, //TODO: доработать, когда появится isDev
+              reloadAll: true
+            }
+          },
+          'css-loader',
+          'sass-loader'
+        ]
+      },
       {
         test: /\.tsx$/,
         exclude: /node_modules/,

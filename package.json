@@ -4,7 +4,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev:client": "yarn start --prefix client",
+    "dev:client": "npm run start --prefix client",
     "dev:server": "",
     "dev": "concurrently \"yarn dev:server\" \"yarn dev:client\""
   },
