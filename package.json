@@ -1,7 +1,16 @@
 {
   "name": "hackaton-art-of-technology",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "scripts": {
+    "dev:client": "",
+    "dev:server": "",
+    "dev": "concurrently \"yarn dev:server\" \"yarn dev:client\""
+  },
+  "repository": "https://github.com/Lequeston/hackaton-art-of-technology",
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.4"
+  }
 }
