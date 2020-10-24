@@ -1,14 +1,14 @@
-# HACKATHON’20: ART OF TECHNOLOGY (Отябрь 2020)
+# HACKATHON’20: ART OF TECHNOLOGY
 
 Работа в таске WEB SBER GEO CASE
 
-Был использован стек React/Redux
+Был использован стек **React/Redux**
 
 ## Информация о команде:
 
-Название: Dev Swarm
+**Название**: Dev Swarm
 
-Состав:
+**Состав**:
 
 1. Логачев Кирилл Александрович
 2. Сазонов Даниил Дмитриевич
