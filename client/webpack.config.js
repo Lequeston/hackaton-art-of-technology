@@ -109,6 +109,10 @@ module.exports = {
         test: /\.(ttf|woff|woff2|eot)$/,
         use: ['file-loader']
       },
+      {
+        test: /\.html$/,
+        loader: 'html-loader',
+      }
     ]
   }
 
