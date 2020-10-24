@@ -26,7 +26,7 @@ const useMap = (id: string) => {
       if(map) {
         markers.forEach(marker => {
           const {coordinate, description} = marker;
-          DG.marker([coordinate.lon, coordinate.lat]).addTo(map).bindPopup(description.title);
+          DG.marker([coordinate.lat, coordinate.lon]).addTo(map).bindPopup(description.title);
         });
       }
     } catch(e) {console.error(e)};
