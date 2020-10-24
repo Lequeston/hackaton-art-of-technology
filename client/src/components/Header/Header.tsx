@@ -68,7 +68,7 @@ const Header = () => {
           <MenuItem onClick={handleClose}>Для дома</MenuItem>
         </Menu>
         <Typography variant="h6" className={classes.title}>
-          Название
+          HACKATHON’20
         </Typography>
       </Toolbar>
     </AppBar>
