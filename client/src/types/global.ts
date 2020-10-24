@@ -1,3 +1,5 @@
+import { rootReducer } from '@redux/reduxStore';
+
 export type CoordinateMap = {
   lon: number, //долгота
   lat: number //широта
@@ -13,5 +15,8 @@ export type Organization = {
 }
 
 export type User = {
-  coordinate: CoordinateMap,
-}
+  coordinate: CoordinateMap | null,
+} 
+
+type RootReducerType = typeof rootReducer;
+export type AppStateType = ReturnType<RootReducerType>;

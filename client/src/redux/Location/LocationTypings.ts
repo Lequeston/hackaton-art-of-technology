@@ -1,14 +1,20 @@
+import { Organization, User } from "@/types/global";
 import { ThunkAction } from "redux-thunk";
+import { PARSE_USER_POSITION } from "./LocationReduxTypes";
 
 //action
-
+export type ParseUserPosition = {
+  type: typeof PARSE_USER_POSITION,
+  body: any
+}
 
 export type LocationActionsType = 
-  any;
+  ParseUserPosition;
 
 //state
 export type LocationInitialState = {
-  test: string
+  user: User,
+  organizations: Array<Organization>
 }
 
 export type FetchLocation = ThunkAction<

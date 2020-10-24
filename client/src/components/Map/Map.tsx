@@ -1,6 +1,7 @@
 import useMap from '@/hooks/useMap';
-import { CoordinateMap, Organization } from '@/types/global';
+import { AppStateType, CoordinateMap, Organization } from '@/types/global';
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './Map.scss';
 
 const MAP = "map";
@@ -53,13 +54,14 @@ const markers = [
   }
 ];
 
-const position: CoordinateMap = {lon: 54.98, lat: 82.95};
-
 const Map = () => {
-  const {setMarkers, setPosition} = useMap(MAP, position);
+  const {setMarkers, setPosition} = useMap(MAP);
+  const user = useSelector((state: AppStateType) => state.location.user);
+
   useEffect(() => {
-    setMarkers(markers);
-  }, []);
+    console.log('-----', user.coordinate);
+    setPosition(user.coordinate);
+  }, [user]);
 
   return (
     <div id={MAP} className="map"></div>
