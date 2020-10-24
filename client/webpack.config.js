@@ -28,7 +28,9 @@ module.exports = {
     ],
     //сокращаем пути
     alias: {
-      '@': path.resolve(__dirname, 'src')
+      '@': path.resolve(__dirname, 'src'),
+      '@types': path.resolve(__dirname, 'src', 'types'),
+      '@redux': path.resolve(__dirname, 'src', 'redux')
     }
   },
   plugins: [
@@ -65,6 +67,19 @@ module.exports = {
             presets: [
               '@babel/preset-env',
               '@babel/preset-react',
+              '@babel/preset-typescript'
+            ]            
+          }
+        }
+      },
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              '@babel/preset-env',
               '@babel/preset-typescript'
             ]            
           }

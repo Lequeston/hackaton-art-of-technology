@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+		"baseUrl": ".",
+		"target": "es5",
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@types/*": ["./src/types/*"],
+      "@redux/*": ["./src/redux/*"],
+    }
+	},
+	"exclude": ["node_modules", "dist"] 
+}
