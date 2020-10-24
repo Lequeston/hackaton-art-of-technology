@@ -6,7 +6,8 @@
   "scripts": {
     "dev:client": "npm run start --prefix client",
     "dev:server": "",
-    "dev": "concurrently \"yarn dev:server\" \"yarn dev:client\""
+    "dev": "concurrently \"yarn dev:server\" \"yarn dev:client\"",
+    "build": "npm run build --prefix client"
   },
   "repository": "https://github.com/Lequeston/hackaton-art-of-technology",
   "devDependencies": {
