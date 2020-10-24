@@ -30,7 +30,10 @@ module.exports = {
     alias: {
       '@': path.resolve(__dirname, 'src'),
       '@types': path.resolve(__dirname, 'src', 'types'),
-      '@redux': path.resolve(__dirname, 'src', 'redux')
+      '@redux': path.resolve(__dirname, 'src', 'redux'),
+      '@hooks': path.resolve(__dirname, 'src', 'hooks'),
+      '@components': path.resolve(__dirname, 'src', 'components'),
+      '@assets': path.resolve(__dirname, 'src', 'assets')
     }
   },
   plugins: [

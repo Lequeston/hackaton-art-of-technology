@@ -1,4 +1,4 @@
-import useMap from '@/hooks/Map';
+import useMap from '@/hooks/useMap';
 import React, { useState, useEffect } from 'react';
 import './Map.scss';
 
