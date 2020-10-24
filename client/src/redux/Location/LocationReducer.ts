@@ -17,8 +17,8 @@ const LocationReducer = (
     const { body } = action;
     return {
       coordinate: {
-        lon: body['longitude'].toFixed(6),
-        lat: body['latitude'].toFixed(6)
+        lon: body['longitude'],
+        lat: body['latitude']
       }
     }
   }
