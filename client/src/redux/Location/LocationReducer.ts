@@ -15,11 +15,11 @@ const LocationReducer = (
   action: LocationActionsType
 ): LocationInitialState => {
   const parseUserPosition = (): User => {
-    const { body } = <ParseUserPosition>action;
+    const { latitude, longitude } = <ParseUserPosition>action;
     return {
       coordinate: {
-        lon: body['longitude'],
-        lat: body['latitude']
+        lon: longitude,
+        lat: latitude
       }
     };
   };
