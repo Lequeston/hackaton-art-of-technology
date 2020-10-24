@@ -13,8 +13,8 @@ const useMap = (id: string) => {
     try {
       console.log(position)
       if (position) {
-        let southWest = DG.latLng(position.lat - 0.01, position.lon - 0.01);
-        let northEast = DG.latLng(position.lat + 0.01, position.lon + 0.01);
+        let southWest = DG.latLng(position.lat - 0.001, position.lon - 0.001);
+        let northEast = DG.latLng(position.lat + 0.001, position.lon + 0.001);
         let bounds = DG.latLngBounds(southWest, northEast)
         const map = DG.map(id, {
           'center': [position.lat, position.lon],
