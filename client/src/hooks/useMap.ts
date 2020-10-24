@@ -16,13 +16,19 @@ const useMap = (id: string) => {
         let southWest = DG.latLng(position.lat - 0.01, position.lon - 0.01);
         let northEast = DG.latLng(position.lat + 0.01, position.lon + 0.01);
         let bounds = DG.latLngBounds(southWest, northEast)
-        setMap(DG.map(id, {
+        const map = DG.map(id, {
           'center': [position.lat, position.lon],
           'zoom': ZOOM,
           'maxBounds': bounds
-        }));
-        console.log(position);
-        //map.fitBounds(DG.latLngBounds(southWest, northEast));
+        });
+        const myIcon = DG.icon({
+          iconUrl: 'https://maps.api.2gis.ru/2.0/example_logo.png',
+          iconSize: [48, 48]
+        });
+        DG.marker([position.lat, position.lon], {
+          icon: myIcon
+        }).addTo(map);
+        setMap(map)
       }
     } catch(e) {console.error(e)};
   }, [position]);
