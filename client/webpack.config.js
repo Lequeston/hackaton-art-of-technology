@@ -28,7 +28,9 @@ module.exports = {
     ],
     //сокращаем пути
     alias: {
-      '@': path.resolve(__dirname, 'src')
+      '@': path.resolve(__dirname, 'src'),
+      '@types': path.resolve(__dirname, 'src', 'types'),
+      '@redux': path.resolve(__dirname, 'src', 'redux')
     }
   },
   plugins: [
@@ -40,6 +42,9 @@ module.exports = {
       filename: '[name].[hash].css'
     })
   ],
+  devServer: {
+    port: 3000
+  },
   module: {
     rules: [
       {
@@ -65,6 +70,19 @@ module.exports = {
             presets: [
               '@babel/preset-env',
               '@babel/preset-react',
+              '@babel/preset-typescript'
+            ]            
+          }
+        }
+      },
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              '@babel/preset-env',
               '@babel/preset-typescript'
             ]            
           }
