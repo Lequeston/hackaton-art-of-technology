@@ -49,6 +49,7 @@ module.exports = {
     port: 4200,
     hot: true
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -118,5 +119,4 @@ module.exports = {
       }
     ]
   }
-
 }
