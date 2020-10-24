@@ -13,7 +13,7 @@ export type SetFilter = {
   filter: String
 };
 
-export type LocationActionsType = ParseUserPosition & SetFilter;
+export type LocationActionsType = ParseUserPosition | SetFilter;
 
 //state
 export type LocationInitialState = {

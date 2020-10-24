@@ -1,6 +1,6 @@
 import { User } from "@/types/global";
 import { PARSE_USER_POSITION, SET_FILTER } from "./LocationReduxTypes";
-import { LocationActionsType, LocationInitialState } from "./LocationTypings";
+import { LocationActionsType, LocationInitialState, ParseUserPosition, SetFilter } from "./LocationTypings";
 
 const initialState: LocationInitialState = {
   user: {
@@ -15,7 +15,7 @@ const LocationReducer = (
   action: LocationActionsType
 ): LocationInitialState => {
   const parseUserPosition = (): User => {
-    const { body } = action;
+    const { body } = <ParseUserPosition>action;
     return {
       coordinate: {
         lon: body['longitude'],
@@ -26,12 +26,10 @@ const LocationReducer = (
   switch(action.type) {
     //парсим позицию пользователя
     case PARSE_USER_POSITION:
-      console.log('body', action.body); 
       return { ...state, user: parseUserPosition() }
     case SET_FILTER:
-      const newState = {...state};
-      newState.filter = action.filter;
-      return newState;
+      const { filter } = <SetFilter>action;
+      return { ...state }
     //если ни один из типов не подошел
     default: 
       return { ...state };
