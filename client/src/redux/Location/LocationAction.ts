@@ -1,5 +1,5 @@
-import { PARSE_USER_POSITION, URL_POSITION } from "./LocationReduxTypes";
-import { FetchLocation, ParseUserPosition } from "./LocationTypings";
+import { PARSE_USER_POSITION, URL_POSITION, SET_FILTER } from "./LocationReduxTypes";
+import { FetchLocation, ParseUserPosition, SetFilter } from "./LocationTypings";
 
 
 export const parseUserPosition = (body: any): ParseUserPosition => ({
@@ -16,6 +16,11 @@ export const getUserPosition = (): FetchLocation => {
       dispatch(parseUserPosition(body));
     } catch(e) {
       console.log(e);
-    }
-  }
-}
+    };
+  };
+};
+
+export const setFilter = (filter: String): SetFilter => ({
+  type: SET_FILTER,
+  filter: filter
+});

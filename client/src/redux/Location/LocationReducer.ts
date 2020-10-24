@@ -1,13 +1,14 @@
 import { User } from "@/types/global";
-import { PARSE_USER_POSITION } from "./LocationReduxTypes";
+import { PARSE_USER_POSITION, SET_FILTER } from "./LocationReduxTypes";
 import { LocationActionsType, LocationInitialState } from "./LocationTypings";
 
 const initialState: LocationInitialState = {
   user: {
     coordinate: null
   },
-  organizations: []
-}
+  organizations: [],
+  filter: ""
+};
 
 const LocationReducer = (
   state: LocationInitialState = initialState,
@@ -20,17 +21,21 @@ const LocationReducer = (
         lon: body['longitude'],
         lat: body['latitude']
       }
-    }
-  }
+    };
+  };
   switch(action.type) {
     //парсим позицию пользователя
     case PARSE_USER_POSITION:
       console.log('body', action.body); 
       return { ...state, user: parseUserPosition() }
+    case SET_FILTER:
+      const newState = {...state};
+      newState.filter = action.filter;
+      return newState;
     //если ни один из типов не подошел
     default: 
       return { ...state };
-  }
-}
+  };
+};
 
 export default LocationReducer;
