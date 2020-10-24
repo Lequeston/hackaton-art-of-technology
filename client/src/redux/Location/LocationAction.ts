@@ -9,7 +9,7 @@ export const parseUserPosition = (latitude: number, longitude: number): ParseUse
   longitude
 });
 
-export const setFilter = (filter: String): SetFilter => ({
+export const setFilter = (filter: string): SetFilter => ({
   type: SET_FILTER,
   filter: filter
 });

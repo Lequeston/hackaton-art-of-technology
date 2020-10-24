@@ -11,7 +11,7 @@ export type ParseUserPosition = {
 
 export type SetFilter = {
   type: typeof SET_FILTER,
-  filter: String
+  filter: string
 };
 
 export type ParseOrganization = {
