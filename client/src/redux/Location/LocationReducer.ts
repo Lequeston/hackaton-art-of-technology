@@ -7,7 +7,7 @@ const initialState: LocationInitialState = {
     coordinate: null
   },
   organizations: [],
-  filter: "Магазины"
+  filter: ""
 };
 
 const LocationReducer = (
@@ -54,7 +54,7 @@ const LocationReducer = (
       return { ...state, user: parseUserPosition() }
     case SET_FILTER:
       const { filter } = <SetFilter>action;
-      return { ...state }
+      return { ...state, filter: filter }
     //если ни один из типов не подошел
     default: 
       return { ...state };

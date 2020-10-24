@@ -38,7 +38,7 @@ const Header = () => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = (filter: String) => {
+  const handleClose = (filter: string) => {
     setAnchorEl(null);
     dispatch(setFilter(filter));
   };
