@@ -10,8 +10,8 @@
   
   
 ## Исользованные языки и библиотеки
-   Использованные языки: JavaScript, TypeScript, HTML, SCSS
-   Использованные стеки: React, Redux
+   - Использованные языки: JavaScript, TypeScript, HTML, SCSS
+   - Использованные стеки: React, Redux
 
 
 ## Краткое описание работы программы 
