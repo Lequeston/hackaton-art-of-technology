@@ -17,7 +17,7 @@ module.exports = {
   },
   //билд проекта
   output: {
-    filename: '[name].[hash].js', //билд js-ников
+    filename: '[name].js', //билд js-ников
     path: path.resolve(__dirname, 'dist') //папка в которую будет собираться
   },
   //настройки удобства в разработке 
@@ -39,11 +39,12 @@ module.exports = {
     }),
     new CleanWebpackPlugin(), //очистка директрии
     new MiniCSSExtractPlugin({
-      filename: '[name].[hash].css'
+      filename: '[name].css'
     })
   ],
   devServer: {
-    port: 3000
+    port: 4200,
+    hot: true
   },
   module: {
     rules: [
@@ -87,7 +88,27 @@ module.exports = {
             ]            
           }
         }
-      }
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              '@babel/preset-env'
+            ]            
+          }
+        }
+      },
+      {
+        test: /\.(png|jpg|svg|gif)$/,
+        use: ['file-loader']
+      },
+      {
+        test: /\.(ttf|woff|woff2|eot)$/,
+        use: ['file-loader']
+      },
     ]
   }
 
