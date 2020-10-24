@@ -1,5 +1,6 @@
 import React from 'react';
-import './Header.scss';
+import { useDispatch } from 'react-redux';
+import { setFilter } from "@redux/Location/LocationAction"
 
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,6 +11,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
+import './Header.scss';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,6 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 const Header = () => {
+  const dispatch = useDispatch();
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -35,8 +38,9 @@ const Header = () => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (filter: String) => {
     setAnchorEl(null);
+    dispatch(setFilter(filter));
   };
 
   return (
@@ -60,12 +64,11 @@ const Header = () => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={handleClose}>Одежда</MenuItem>
-          <MenuItem onClick={handleClose}>Электроника</MenuItem>
-          <MenuItem onClick={handleClose}>Продуктовый</MenuItem>
-          <MenuItem onClick={handleClose}>Обувь</MenuItem>
-          <MenuItem onClick={handleClose}>Гипермаркет</MenuItem>
-          <MenuItem onClick={handleClose}>Для дома</MenuItem>
+          <MenuItem onClick={() => handleClose("Одежда")}>Одежда</MenuItem>
+          <MenuItem onClick={() => handleClose("Электроника")}>Электроника</MenuItem>
+          <MenuItem onClick={() => handleClose("Продуктовый")}>Продуктовый</MenuItem>
+          <MenuItem onClick={() => handleClose("Обувь")}>Обувь</MenuItem>
+          <MenuItem onClick={() => handleClose("Гипермаркет")}>Гипермаркет</MenuItem>
         </Menu>
         <Typography variant="h6" className={classes.title}>
           HACKATHON’20
@@ -73,6 +76,6 @@ const Header = () => {
       </Toolbar>
     </AppBar>
   )
-}
+};
 
 export default Header;

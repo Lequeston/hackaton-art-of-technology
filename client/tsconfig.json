@@ -8,6 +8,9 @@
       "@/*": ["./src/*"],
       "@types/*": ["./src/types/*"],
       "@redux/*": ["./src/redux/*"],
+      "@hooks/*": ["./src/types/*"],
+      "@components/*": ["./src/components/*"],
+      "@assets/*": ["./src/assets/*"]
     }
 	},
 	"exclude": ["node_modules", "dist"] 
