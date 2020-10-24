@@ -1,16 +1,19 @@
 import { useState, useEffect } from 'react';
 import DG from "2gis-maps";
+import { CoordinateMap, Organization } from '@/types/global';
 
-const useMap = (id, initialPosition,) => {
-  const [map, setMap] = useState(null);
-  const [markers, setMarkers] = useState(null);
-  const [position, setPosition] = useState(initialPosition);
+const ZOOM = 13;
+
+const useMap = (id: string, initialPosition: CoordinateMap) => {
+  const [map, setMap] = useState<any>(null);
+  const [markers, setMarkers] = useState<Array<Organization>>([]);
+  const [position, setPosition] = useState<CoordinateMap>(initialPosition);
 
   useEffect(() => {
     try {
     setMap(DG.map(id, {
       'center': [position.lon, position.lat],
-      'zoom': 13
+      'zoom': ZOOM
     }));
     } catch(e) {console.error(e)};
   }, [position]);
@@ -19,14 +22,14 @@ const useMap = (id, initialPosition,) => {
     try {
       if(map) {
         markers.forEach(marker => {
-          console.log(marker.lon, marker.lat);
-          DG.marker([marker.lon, marker.lat]).addTo(map).bindPopup(marker.info);
+          const {coordinate, description} = marker;
+          DG.marker([coordinate.lon, coordinate.lat]).addTo(map).bindPopup(description.title);
         });
       }
     } catch(e) {console.error(e)};
   }, [markers]);
 
-  return [setMarkers, setPosition];
+  return {setMarkers, setPosition};
 };
 
 export default useMap;
