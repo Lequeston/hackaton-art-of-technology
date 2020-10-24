@@ -13,10 +13,16 @@ const useMap = (id: string) => {
     try {
       console.log(position)
       if (position) {
+        let southWest = DG.latLng(position.lat - 0.01, position.lon - 0.01);
+        let northEast = DG.latLng(position.lat + 0.01, position.lon + 0.01);
+        let bounds = DG.latLngBounds(southWest, northEast)
         setMap(DG.map(id, {
           'center': [position.lat, position.lon],
-          'zoom': ZOOM
+          'zoom': ZOOM,
+          'maxBounds': bounds
         }));
+        console.log(position);
+        //map.fitBounds(DG.latLngBounds(southWest, northEast));
       }
     } catch(e) {console.error(e)};
   }, [position]);
