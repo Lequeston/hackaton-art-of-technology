@@ -13,10 +13,22 @@ const useMap = (id: string) => {
     try {
       console.log(position)
       if (position) {
-        setMap(DG.map(id, {
+        let southWest = DG.latLng(position.lat - 0.001, position.lon - 0.001);
+        let northEast = DG.latLng(position.lat + 0.001, position.lon + 0.001);
+        let bounds = DG.latLngBounds(southWest, northEast)
+        const map = DG.map(id, {
           'center': [position.lat, position.lon],
-          'zoom': ZOOM
-        }));
+          'zoom': ZOOM,
+          'maxBounds': bounds
+        });
+        const myIcon = DG.icon({
+          iconUrl: 'https://maps.api.2gis.ru/2.0/example_logo.png',
+          iconSize: [48, 48]
+        });
+        DG.marker([position.lat, position.lon], {
+          icon: myIcon
+        }).addTo(map);
+        setMap(map)
       }
     } catch(e) {console.error(e)};
   }, [position]);
