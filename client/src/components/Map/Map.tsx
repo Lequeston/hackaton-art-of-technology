@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Map.scss';
 
-const Map = () => {
-  return (
-    <div className="map">
+import DG from "2gis-maps";
 
-    </div>
+const MAP = "map";
+
+const Map = () => {
+  useEffect(() => {
+    const map = DG.map(MAP, {
+      'center': [54.98, 82.89],
+      'zoom': 13
+    });
+  }, []);
+
+  return (
+    <div id={MAP} className="map"></div>
   )
 }
 
