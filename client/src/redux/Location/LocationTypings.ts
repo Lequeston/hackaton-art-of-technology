@@ -5,7 +5,8 @@ import { PARSE_USER_POSITION, SET_FILTER } from "./LocationReduxTypes";
 //action
 export type ParseUserPosition = {
   type: typeof PARSE_USER_POSITION,
-  body: any
+  latitude: number,
+  longitude: number
 };
 
 export type SetFilter = {
