@@ -42,6 +42,9 @@ module.exports = {
       filename: '[name].[hash].css'
     })
   ],
+  devServer: {
+    port: 3000
+  },
   module: {
     rules: [
       {
