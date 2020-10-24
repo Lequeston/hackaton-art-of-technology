@@ -1,5 +1,6 @@
-import { PARSE_USER_POSITION, URL_POSITION, SET_FILTER } from "./LocationReduxTypes";
-import { FetchLocation, ParseUserPosition, SetFilter } from "./LocationTypings";
+import { CoordinateMap } from "@/types/global";
+import { PARSE_USER_POSITION, URL_POSITION, SET_FILTER, PARSE_ORGANIZATION } from "./LocationReduxTypes";
+import { FetchLocation, ParseOrganization, ParseUserPosition, SetFilter } from "./LocationTypings";
 
 
 export const parseUserPosition = (latitude: number, longitude: number): ParseUserPosition => ({
@@ -7,6 +8,16 @@ export const parseUserPosition = (latitude: number, longitude: number): ParseUse
   latitude,
   longitude
 });
+
+export const setFilter = (filter: String): SetFilter => ({
+  type: SET_FILTER,
+  filter: filter
+});
+
+export const parseOrganization = (body: any): ParseOrganization => ({
+  type: PARSE_ORGANIZATION,
+  body
+})
 
 export const getUserPosition = (): FetchLocation => {
   return async (dispatch) => {
@@ -27,7 +38,17 @@ export const getUserPosition = (): FetchLocation => {
   };
 };
 
-export const setFilter = (filter: String): SetFilter => ({
-  type: SET_FILTER,
-  filter: filter
-});
+export const fetchOrganizations = (position: CoordinateMap, category: string): FetchLocation => {
+  return async (dispatch) => {
+    try {
+      if (category && position){
+        const url = `https://catalog.api.2gis.ru/3.0/items?q=${category}&sort_point=${position.lon},${position.lat}&key=rugtio3557&fields=items.point`;
+        const response = await fetch(url);
+        const body = await response.json();
+        dispatch(parseOrganization(body));
+      }
+    } catch(e) {
+      console.error(e);
+    }
+  }
+}
