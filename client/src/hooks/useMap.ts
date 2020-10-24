@@ -23,7 +23,7 @@ const useMap = (id: string) => {
 
   useEffect(() => {
     try {
-      if(map) {
+      if(map && markers) {
         markers.forEach(marker => {
           const {coordinate, description} = marker;
           DG.marker([coordinate.lat, coordinate.lon]).addTo(map).bindPopup(description.title);

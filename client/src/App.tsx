@@ -7,24 +7,32 @@ import './App.scss';
 import Header from "./components/Header";
 import Map from "./components/Map";
 
-import { getUserPosition } from '@redux/Location/LocationAction';
-import { AppStateType } from './types/global';
+import { getUserPosition, fetchOrganizations } from '@redux/Location/LocationAction';
+import { AppStateType, CoordinateMap } from './types/global';
 
-type MapStateToPropsType = {};
+type MapStateToPropsType = {
+  filter: string,
+  coordinate: CoordinateMap | null
+};
 
 type MapDispatchToPropsType = {
-  getUserPosition: any
+  getUserPosition: any,
+  fetchOrganizations: any
 };
 
 type OwnPropsType = {};
 
 type Props = MapStateToPropsType & MapDispatchToPropsType & OwnPropsType;
 
-const App: React.FC<Props> = ({ getUserPosition }) => {
+const App: React.FC<Props> = ({ getUserPosition, fetchOrganizations, filter, coordinate }) => {
   useEffect(() => {
     getUserPosition();
   }, []);
 
+  useEffect(() => {
+    fetchOrganizations(coordinate, filter);
+  }, [coordinate, filter]);
+  
   return (
     <>
       <Header/>
@@ -33,10 +41,14 @@ const App: React.FC<Props> = ({ getUserPosition }) => {
   )
 }
 
-const mapStateToProps = (): MapStateToPropsType => ({});
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
+  filter: state.location.filter,
+  coordinate: state.location.user.coordinate
+});
 
 const mapDispatchToProps: MapDispatchToPropsType = {
-  getUserPosition
+  getUserPosition,
+  fetchOrganizations
 };
 
 const connector = connect<

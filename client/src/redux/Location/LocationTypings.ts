@@ -1,6 +1,6 @@
 import { Organization, User } from "@/types/global";
 import { ThunkAction } from "redux-thunk";
-import { PARSE_USER_POSITION, SET_FILTER } from "./LocationReduxTypes";
+import { PARSE_ORGANIZATION, PARSE_USER_POSITION, SET_FILTER } from "./LocationReduxTypes";
 
 //action
 export type ParseUserPosition = {
@@ -14,13 +14,20 @@ export type SetFilter = {
   filter: String
 };
 
-export type LocationActionsType = ParseUserPosition | SetFilter;
+export type ParseOrganization = {
+  type: typeof PARSE_ORGANIZATION,
+  body: any
+}
+export type LocationActionsType = 
+  ParseUserPosition | 
+  SetFilter |
+  ParseOrganization;
 
 //state
 export type LocationInitialState = {
   user: User,
   organizations: Array<Organization>
-  filter: String
+  filter: string
 };
 
 export type FetchLocation = ThunkAction<
