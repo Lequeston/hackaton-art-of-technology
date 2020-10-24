@@ -1,9 +1,15 @@
 import React from 'react';
 import './App.scss';
 
+import Header from "./components/Header";
+import Map from "./components/Map";
+
 const App = () => {
   return (
-    <h1>Hello, world</h1>
+    <>
+      <Header/>
+      <Map/>
+    </>
   )
 }
 
