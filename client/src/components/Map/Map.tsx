@@ -1,17 +1,23 @@
-import React, { useEffect } from 'react';
+import useMap from '@/hooks/Map';
+import React, { useState, useEffect } from 'react';
 import './Map.scss';
-
-import DG from "2gis-maps";
 
 const MAP = "map";
 
+const markers = [
+  {lon: 54.98, lat: 82.89, info: "Чебупели"},
+  {lon: 54.99, lat: 82.89, info: "Чебупели"},
+  {lon: 55.00, lat: 82.89, info: "Чебупели"},
+  {lon: 55.01, lat: 82.89, info: "Чебупели"},
+  {lon: 55.02, lat: 82.89, info: "Чебупели"}
+]
+
+const position = {lon: 54.98, lat: 82.95, info: "Чебупели"};
+
 const Map = () => {
-  useEffect(() => {
-    const map = DG.map(MAP, {
-      'center': [54.98, 82.89],
-      'zoom': 13
-    });
-  }, []);
+const [setMarkers, setPosition] = useMap(MAP, position);
+
+useEffect(() => {setMarkers(markers)});
 
   return (
     <div id={MAP} className="map"></div>
