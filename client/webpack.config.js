@@ -13,7 +13,7 @@ module.exports = {
   context: path.resolve(__dirname, 'src'),
   //точки входа для webpack
   entry: {
-    app: ["./index.tsx"]
+    app: ['@babel/polyfill', "./index.tsx"]
   },
   //билд проекта
   output: {
