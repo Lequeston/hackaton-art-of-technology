@@ -1,7 +1,7 @@
 import useMap from '@/hooks/useMap';
 import { AppStateType, CoordinateMap, Organization } from '@/types/global';
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import './Map.scss';
 
 const MAP = "map";
