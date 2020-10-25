@@ -1,14 +1,14 @@
 import useMap from '@/hooks/useMap';
 import { AppStateType, CoordinateMap, Organization } from '@/types/global';
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import './Map.scss';
 
 const MAP = "map";
 
 const Map = () => {
-  const {setMarkers, setPosition} = useMap(MAP);
   const user = useSelector((state: AppStateType) => state.location.user);
+  const {setMarkers, setPosition} = useMap(MAP, user.coordinate);
   const organization = useSelector((state: AppStateType) => state.location.organizations);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Map = () => {
   }, [user]);
 
   useEffect(() => {
-    console.log(organization);
+    console.log('?????', organization);
     setMarkers(organization);
   }, [organization]);
   

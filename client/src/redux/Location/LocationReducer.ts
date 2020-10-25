@@ -4,7 +4,9 @@ import { LocationActionsType, LocationInitialState, ParseOrganization, ParseUser
 
 const initialState: LocationInitialState = {
   user: {
-    coordinate: null
+    coordinate: {
+      lat: 54.98, lon: 82.89
+    }
   },
   organizations: [],
   filter: ""

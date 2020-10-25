@@ -15,7 +15,7 @@ export type Organization = {
 }
 
 export type User = {
-  coordinate: CoordinateMap | null,
+  coordinate: CoordinateMap,
 } 
 
 type RootReducerType = typeof rootReducer;
