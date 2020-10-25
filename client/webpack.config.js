@@ -7,6 +7,31 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
+
+const isDev = process.env.NODE_ENV === 'development';
+const isProd = !isDev;
+
+
+const optimization = () => {
+  const config = {
+    splitChunks: {
+      chunks: 'all'
+    }
+  }
+
+  if (isProd) {
+    config.minimizer = [
+      new OptimizeCssAssetsWebpackPlugin(),
+      new TerserWebpackPlugin()
+    ]
+  }
+
+  return config;
+}
+
+const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`;
 
 module.exports = {
   //рабочая дериктория
@@ -17,7 +42,7 @@ module.exports = {
   },
   //билд проекта
   output: {
-    filename: '[name].js', //билд js-ников
+    filename: filename('js'), //билд js-ников
     path: path.resolve(__dirname, 'dist') //папка в которую будет собираться
   },
   //настройки удобства в разработке 
@@ -36,20 +61,28 @@ module.exports = {
       '@assets': path.resolve(__dirname, 'src', 'assets')
     }
   },
+  optimization: optimization(),
+
   plugins: [
     new HtmlWebpackPlugin({
-      template: './index.html', //TODO: доработать, когда появится isDev
+      template: './index.html',
+      minify: {
+        collapseWhitespace: isProd
+      }
     }),
     new CleanWebpackPlugin(), //очистка директрии
     new MiniCSSExtractPlugin({
-      filename: '[name].css'
+      filename: filename('css')
     })
   ],
+  
   devServer: {
     port: 4200,
-    hot: true
+    hot: isDev
   },
-  devtool: 'source-map',
+
+  devtool: isDev ? 'source-map' : undefined,
+
   module: {
     rules: [
       {
@@ -58,7 +91,7 @@ module.exports = {
           {
             loader: MiniCSSExtractPlugin.loader,
             options: {
-              hmr: true, //TODO: доработать, когда появится isDev
+              hmr: true,
               reloadAll: true
             }
           },
@@ -112,10 +145,6 @@ module.exports = {
       {
         test: /\.(ttf|woff|woff2|eot)$/,
         use: ['file-loader']
-      },
-      {
-        test: /\.html$/,
-        loader: 'html-loader',
       }
     ]
   }
