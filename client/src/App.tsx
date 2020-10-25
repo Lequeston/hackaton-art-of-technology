@@ -26,10 +26,6 @@ type Props = MapStateToPropsType & MapDispatchToPropsType & OwnPropsType;
 
 const App: React.FC<Props> = ({ getUserPosition, fetchOrganizations, filter, coordinate }) => {
   useEffect(() => {
-    getUserPosition();
-  }, []);
-
-  useEffect(() => {
     fetchOrganizations(coordinate, filter);
   }, [coordinate, filter]);
   
