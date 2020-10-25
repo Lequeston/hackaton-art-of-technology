@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
     },
     menuButton: {
-      marginRight: theme.spacing(2),
+      paddingRight: 0,
     },
     title: {
       flexGrow: 1,
@@ -46,17 +46,9 @@ const Header = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <IconButton 
-          edge="start" 
-          className={classes.menuButton}
-          color="inherit"
-          aria-label="menu"
-          aria-controls="simple-menu"
-          aria-haspopup="true"
-          onClick={handleClick}
-          >
-          <MenuIcon />
-        </IconButton>
+        <Typography variant="h6" className={classes.title}>
+          HACKATHON’20
+        </Typography>
         <Menu
           id="simple-menu"
           anchorEl={anchorEl}
@@ -70,9 +62,17 @@ const Header = () => {
           <MenuItem onClick={() => handleClose("Обувь")}>Обувь</MenuItem>
           <MenuItem onClick={() => handleClose("Гипермаркет")}>Гипермаркет</MenuItem>
         </Menu>
-        <Typography variant="h6" className={classes.title}>
-          HACKATHON’20
-        </Typography>
+        <IconButton 
+          edge="start" 
+          className={classes.menuButton}
+          color="inherit"
+          aria-label="menu"
+          aria-controls="simple-menu"
+          aria-haspopup="true"
+          onClick={handleClick}
+          >
+          <MenuIcon />
+        </IconButton>
       </Toolbar>
     </AppBar>
   )
