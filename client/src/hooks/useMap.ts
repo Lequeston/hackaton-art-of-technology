@@ -4,33 +4,36 @@ import { CoordinateMap, Organization } from '@/types/global';
 
 const ZOOM = 13;
 
-const useMap = (id: string) => {
+const useMap = (id: string, initialPosition: CoordinateMap) => {
   const [map, setMap] = useState<any>(null);
   const [markers, setMarkers] = useState<Array<Organization>>([]);
-  const [position, setPosition] = useState<CoordinateMap>({lat: 54.98, lon: 82.89});
+  const [position, setPosition] = useState<CoordinateMap>(initialPosition);
 
   useEffect(() => {
     try {
-      if (position) {
-        const map = DG.map(id, {
-          'center': [position.lat, position.lon],
-          'zoom': ZOOM,
-          'dragging': false,
-          'scrollWheelZoom': 'center' 
-        });
-        setMap(map);
-      }
-    } catch(e) {console.error(e)};
+      const map = DG.map(id, {
+        'center': [position.lat, position.lon],
+        'zoom': ZOOM,
+      });
+      DG.control.location().addTo(map);
+      DG.control.scale().stopFollowingOnDrag(false).addTo(map);
+      setMap(map);
+    } catch(e) {
+      console.error(e);
+    };
   }, []);
 
+  /** 
   useEffect(() => {
     try {
       if (map && position) {
         const latlngPos = DG.latLng(position.lat, position.lon);
-        map.flyTo(latlngPos);
+        map.panTo(latlngPos);
       };
-    } catch(e) {console.error(e)};
-  }, [position]);
+    } catch(e) {
+      console.error(e)
+    };
+  }, [position]);*/
 
   useEffect(() => {
     try {
@@ -43,7 +46,7 @@ const useMap = (id: string) => {
     } catch(e) {console.error(e)};
   }, [markers]);
 
-  return {setMarkers, setPosition, position};
+  return {setMarkers, setPosition};
 };
 
 export default useMap;

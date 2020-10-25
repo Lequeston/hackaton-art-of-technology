@@ -7,8 +7,8 @@ import './Map.scss';
 const MAP = "map";
 
 const Map = () => {
-  const {setMarkers, setPosition} = useMap(MAP);
   const user = useSelector((state: AppStateType) => state.location.user);
+  const {setMarkers, setPosition} = useMap(MAP, user.coordinate);
   const organization = useSelector((state: AppStateType) => state.location.organizations);
 
   useEffect(() => {
