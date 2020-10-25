@@ -80,7 +80,7 @@ const Header = () => {
           onChange={handleChange}
         >
           <MenuItem value="">
-            <em>Выбирете категорию</em>
+            <em>Выберите категорию</em>
           </MenuItem>
           {categories.map(categ => {
             return (
