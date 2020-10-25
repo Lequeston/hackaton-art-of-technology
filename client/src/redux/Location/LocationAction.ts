@@ -41,6 +41,7 @@ export const getUserPosition = (): FetchLocation => {
 export const fetchOrganizations = (position: CoordinateMap, category: string): FetchLocation => {
   return async (dispatch) => {
     try {
+      console.log('-----', category, position);
       if (category && position){
         const url = `https://catalog.api.2gis.ru/3.0/items?q=${category}&sort_point=${position.lon},${position.lat}&key=rugtio3557&fields=items.point`;
         const response = await fetch(url);

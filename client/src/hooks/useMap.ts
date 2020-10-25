@@ -8,6 +8,7 @@ const useMap = (id: string) => {
   const [map, setMap] = useState<any>(null);
   const [markers, setMarkers] = useState<Array<Organization>>([]);
   const [position, setPosition] = useState<CoordinateMap>();
+  const [groupMarkers, setGroupMarkers] = useState<any>(DG.featureGroup());
 
   useEffect(() => {
     try {
@@ -36,13 +37,22 @@ const useMap = (id: string) => {
   useEffect(() => {
     try {
       if(map && markers) {
+        groupMarkers.removeFrom(map);
+        const array = [];
         markers.forEach(marker => {
           const {coordinate, description} = marker;
-          DG.marker([coordinate.lat, coordinate.lon]).addTo(map).bindPopup(description.title);
+          array.push(DG.marker([coordinate.lat, coordinate.lon]).bindPopup(description.title));
         });
+        setGroupMarkers(DG.featureGroup(array));
       }
     } catch(e) {console.error(e)};
   }, [markers]);
+
+  useEffect(() => {
+    if (map && groupMarkers){
+      groupMarkers.addTo(map);
+    }
+  }, [groupMarkers])
 
   return {setMarkers, setPosition};
 };

@@ -43,12 +43,15 @@ const LocationReducer = (
         return null;
       }
     });
+    console.log('newOrganization', newOrganization);
     return newOrganization.filter(elem => elem);
   }
 
   switch(action.type) {
     case PARSE_ORGANIZATION:
-      return { ...state, organizations: parseOrganization() }
+      const organizations = parseOrganization();
+      console.log(organizations);
+      return { ...state, organizations }
     //парсим позицию пользователя
     case PARSE_USER_POSITION:
       return { ...state, user: parseUserPosition() }
