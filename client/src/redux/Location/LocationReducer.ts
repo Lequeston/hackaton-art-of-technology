@@ -28,6 +28,7 @@ const LocationReducer = (
 
   const parseOrganization = (): Array<Organization> => {
     const { body } = <ParseOrganization>action;
+    console.log(body);
     const array = body['result']['items'];
     const newOrganization = array.map((elem: any): Organization | null => {
       const point = elem['point'];
@@ -38,7 +39,7 @@ const LocationReducer = (
             lon: point['lon']
           },
           description: {
-            title: elem['building_name'] || 'Название не известно'
+            title: elem['building_name'] || elem['name'] || 'Название не известно'
           }
         }
       } else {
